@@ -1,17 +1,17 @@
-#Campus Life Planner
+# Campus Life Planner
 
-##1.Project Overview
+## 1.Project Overview
 
 Campus Life Planner is a responsive web application that helps students organize academic assignments,campus events,and personal tasks.Users will be able to add,view,search,sort,edit and delete activities.
 
-##2.Project Objectivities
+## 2.Project Objectivities
 
 -Help students manage activities and deadlines.
 -Display useful statistics about planned activities.
 Allow users to search and sort activities.
 -Save activity data in the browser.
 -Provide an accessible experience on mobile,table and desktop.
-##3.Planned Features
+## 3.Planned Features
 -Add and validate activities.
 -Search activities using regular expressions.
 -Filter activities by tag and sort them.
