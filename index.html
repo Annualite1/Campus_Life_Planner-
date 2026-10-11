@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Campus Life Planner helps students organize tasks, deadlines, and campus events.">
+    <title>Campus Life Planner</title>
+<link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to the main content</a>
+    <nav aria-label="Main navigation">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#activities">Activities</a>
+        <a href="#add-activity">Add Activity</a>
+    </nav>
+    <header>
+        <h1>Campus Life Planner</h1>
+        <p>Organized tasks, meet deadlines, and stay on track. </p>
+    </header>
+<main id="main-content">
+    <section id="dashboard">
+        <h2>Dashboard</h2>
+        <p>Welcome to your Campus Life Planner!</p>
+        <p>Keep track of your academic tasks and campus activities.</p>
+   <div class="stats-container">
+    <article class="stat-card">
+<h3>Total Activities</h3>
+<p id="total-activities">0</p>
+    </article>
+    <article class ="stat-card">
+        <h3>Upcoming Activities</h3>
+        <p id="upcoming-activities">0</p>
+    </article>
+    <article class="stat-card">
+        <h3>Completed Activities</h3>
+        <p id="completed-activities">0</p>
+    </article>
+   </div>
+    </section>
+    <section id="activities">
+        <h2>My Activities</h2>
+        <p>Manage your Activities.</p>
+        <div class="activity-controls">
+            <div class="form-group">
+                <label for ="search-input">Search Activities</label>
+                <input type="search" id="search-input" placeholder="e.g assignment">
+            </div>
+            <div class="form-group">
+                <label for="tag-filter">Filter</label>
+                <select id="tag-filter">
+                    <option value="">All Tags</option>
+                    <option value="Study">Study</option>
+                    <option value="Assignment">Assignment</option>
+                    <option value="Event">Event</option>
+                    <option value="Personal">Personal</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sort-by">Sort Activities By</label>
+                <select id="sort-by">
+                    <option value="dueDate-asc">Due Date (Earliest)</option>
+                    <option value="dueDate-desc">Due Date(Latest)</option>
+                    <option value="title-asc">Title(A-Z)</option>
+                    <option value="title-desc">Title(Z-A)</option>
+                    <option value="duration-asc">Duration(Shortest)</option>
+                    <option value="duration-desc">Duration(Longest)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="case-insensitive" checked
+>
+            <label for="case-insensitive">Ignore Letter Case</label> 
+           </div>
+           <div id="search-status" role="status" aria-live="polite"></div>
+        </div>
+        <div class="activities-list">
+            <p>Activities will appear here.</p>
+        </div>
+    </section>
+       <section id="add-activity">
+                <h2> Add a New Activity</h2>
+<form id="activity-form">
+    <div class="form-group">
+        <label for="duration">Duration(minutes)</label>
+        <input type="number" id="duration" name="duration" min="1" max="1440" step="1" required>
+    </div>
+    <div class="form-group">
+        <label for="tag">Activity Tag</label>
+        <input type="text" id="tag" name="tag" placeholder="e.g study" required>
+    </div>
+    <button type="submit">Add Activity</button>
+</form>
+</main>
+<footer>
+<p>&copy; 2026 Campus Life Planner</p>
+</footer>
+<script type="module" src="scripts/main.js"></script>
+</body>
+</html>
