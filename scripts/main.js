@@ -22,7 +22,9 @@ const searchInput = document.querySelector("#search-input");
 const tagFilter = document.querySelector("#tag-filter");
 const sortBy = document.querySelector("#sort-by");
 const caseInsensitive = document.querySelector("#case-insensitive");
-const searcStatus = document.querySelector("#search-status");
+const searchStatus = document.querySelector("#search-status");
+const activityCapInput = document.querySelector("#activity-cap");
+const capStatus = document.querySelector("#cap-status");
 const savedActivities = loadActivities();
 if(savedActivities) {
     setActivities(savedActivities);
@@ -32,9 +34,32 @@ if(savedSettings) {
     Object.assign(settings,savedSettings);
 
 }
+if (activityCapInput) {
+    activityCapInput.value = settings.activityCap;
+}
+function updatecapStatus(){
+    const cap = Number(settings.activityCap);
+    const total = activities.length;
+
+    if(capStatus){
+            capStatus.textContent =
+            `${Math.min(total, cap)} of ${cap} activities used.`;
+            const capalert = document.querySelector("#cap-alert");
+            if(capAlert) {
+                const limitReached = total >= cap;
+                capAlert.hidden = !limitReached;
+                capAlert.textContent = limitReached
+                ? `Activity limit reached: ${cap}. Increase the cap or remove an activity to add another.`
+                : "";
+            }
+            }
+        
+    }
+}
 function saveAndRender(){
     saveActivities(activities);
     updateDashboard(activities);
+    updateCapStatus();
     displayActivities();
 }
 function displayActivities(){
@@ -60,6 +85,11 @@ const searchResult= searchActivities(
 }
 form?.addEventListener("submit", event =>){
     event.preventDefault();
+    const cap = Number(activityCapInput?.value || settings.activityCap);
+    if (activities.length >= cap) {
+        updateCapStatus();
+        return;
+    }
 
     const activity={
         id:crypto.randomUUID(),
@@ -86,7 +116,19 @@ searchInput?.addEventListener("input", displayActivities);
 tagFilter?.addEventListener("change", displayActivities);
 sortBy?.addEventListener("change", displayActivities);
 caseInsensitive?.addEventListener("change", displayActivities);
+activityCapInput?.addEventListener("change", () =>{
+    const cap = Number(activityCapInput.value);
+    if(!Number.isInteger(cap) || cap < 1 || cap > 100) {
+        activityCapInput.value = settings.activityCap;
+        updatecapStatus();
+        return;
+    }
+    settings.activityCap = cap;
+    saveSettings(settings);
+    updateCapStatus();
+});
 
 saveSettings(settings);
 updateDashboard(activities);
+updateCapStatus();
 displayActivities();

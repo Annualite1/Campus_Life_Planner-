@@ -25,6 +25,30 @@
         <p>Keep track of your academic tasks and campus activities.</p>
    <div class="stats-container">
     <article class="stat-card">
+        <h3>Total Duration</h3>
+        <p id="total-duration">0 minutes</p>
+    </article>
+    <article class="stat-card">
+        <h3>Most Common Tag</h3>
+<p id="top-tag">None yet</p>
+    </article>
+    </div>
+    <div class="trend-card">
+        <h3>Activity Trend - Last 7 Days</h3>
+        <p id="weekly-trend">NO activity trend available yet.</p>
+    </div>
+    <div class="cap-card">
+        <h3>Activity Cap</h3>
+        <div class="form-group">
+            <label for="activity-cap">Maximum activities</label>
+            <input type="number"  id="activity-cap" min="1" max="100" step="1" value="10">
+        </div>
+        <p id="cap-status" role="status" aria-live="polite">Activity cap is 10</p>
+        <p id="cap-alert" role="alert" aria-live="assertive" hidden></p>
+    </div>
+    </section>
+
+    <article class="stat-card">
 <h3>Total Activities</h3>
 <p id="total-activities">0</p>
     </article>
@@ -82,6 +106,14 @@
                 <h2> Add a New Activity</h2>
 <form id="activity-form">
     <div class="form-group">
+        <label for="title">Activity Title</label>
+        <input type="text" id="title" name="title" minlength="3" maxlength="100" required>
+        </div>
+        <div class="form-group">
+            <label for="dueDate">Due Date</label>
+            <input type="date" id="dueDate" name="dueDate" required>
+            </div>
+        <div class="form-group">
         <label for="duration">Duration(minutes)</label>
         <input type="number" id="duration" name="duration" min="1" max="1440" step="1" required>
     </div>
@@ -91,6 +123,7 @@
     </div>
     <button type="submit">Add Activity</button>
 </form>
+</section>
 </main>
 <footer>
 <p>&copy; 2026 Campus Life Planner</p>
