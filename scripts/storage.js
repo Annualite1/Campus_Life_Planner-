@@ -13,17 +13,17 @@ const SETTINGS_KEY ="campusLifePlannerSettings";
  
     export function loadActivities(){
         try {
-            const saveData =localStorage.getItem(STORAGE_KEY);
+            const savedData = localStorage.getItem(STORAGE_KEY);
             if (!savedData) {
                 return null;
             }
              const activities =JSON.parse(savedData);
-             if (!Array.isArray(activities) {
+             if (!Array.isArray(activities)) {
                 return null;
              }
              return activities;
             }catch(error) {
-                console.error("Could not load activities:" error);
+                console.error("Could not load activities:", error);
                 return null;
             }
         }
@@ -57,4 +57,4 @@ const SETTINGS_KEY ="campusLifePlannerSettings";
         }
         }
             
-    }
+    

@@ -1,6 +1,6 @@
 export let activities = [];
-export let settings ={
-    durationUnit: "minutes"
+export let settings = {
+    durationUnit: "minutes",
     activityCap: 10
 };
  export function setActivities(newActivities){

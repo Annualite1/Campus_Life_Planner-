@@ -9,17 +9,29 @@ export function validateActivity(activity) {
         errors.dueDate ="Enter a valid due date.";
      }
      else {
-        const parsedDate = new Date(`${dueDate}T00:00:00`);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-         if(
-            Number.isNaN(parsedDate.getTime()) ||
-            parsedDate.toISOString().slice(0, 10) !== dueDate ||
-            parsedDate < today
-         ){
-            errors.dueDate ="Due Date must be today or in the future.";
-         }
-     }
+        const [year, month, day] = dueDate.split("-").map(Number);
+        const parsedDate = new Date(year, month - 1, day);
+
+        if (
+            parsedDate.getFullYear() !== year ||
+            parsedDate.getMonth() !== month - 1 ||
+            parsedDate.getDate() !== day
+        ) {
+            errors.dueDate = "Enter a valid due date.";
+        } else {
+            const now = new Date();
+            const today = new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate()
+            );
+            if(parsedDate < today) {
+                errors.dueDate = "Due Date must be today or in the future.";
+
+            }
+        }
+    }
+    
       const duration = Number(activity.duration);
       if (!Number.isInteger(duration) || duration <1 ||duration >1440) {
         errors.duration ="Duration must be an integer from 1 to 1440 minutes.";
@@ -37,5 +49,5 @@ export function validateActivity(activity) {
         isValid: Object.keys(errors).length ===0,
         errors
       };
-      }
-}
+    }
+

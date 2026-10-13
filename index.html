@@ -13,6 +13,7 @@
         <a href="#dashboard">Dashboard</a>
         <a href="#activities">Activities</a>
         <a href="#add-activity">Add Activity</a>
+        <a href="#about">About</a>
     </nav>
     <header>
         <h1>Campus Life Planner</h1>
@@ -32,6 +33,18 @@
         <h3>Most Common Tag</h3>
 <p id="top-tag">None yet</p>
     </article>
+  <article class="stat-card">
+    <h3>Total Activities</h3>
+    <p id="total-activities">0</p>
+  </article>  
+  <article class="stat-card">
+    <h3>Upcoming Activities</h3>
+    <p id="upcoming-activities">0</p>
+  </article>
+  <article class="stat-card">
+    <h3>Completed Activities</h3>
+    <p id="completed-activities">0</p>
+  </article>
     </div>
     <div class="trend-card">
         <h3>Activity Trend - Last 7 Days</h3>
@@ -46,21 +59,25 @@
         <p id="cap-status" role="status" aria-live="polite">Activity cap is 10</p>
         <p id="cap-alert" role="alert" aria-live="assertive" hidden></p>
     </div>
-    </section>
+    <div class="data-controls">
+        <h3>Backup Your Activities</h3>
+        <div class="form-group">
+            <label for="duration-unit">Duration display unit</label>
+            <select id ="duration-unit">
+                <option value="minutes">Minutes</option>
+                <option value="hours">Hours</option>
+            </select>
+        </div>
+    <button type="button" id="export-button">
+        Export Activities(JSON)
+    </button>
+    <div class ="form-group">
+        <label for ="import-file">Import Activities (JSON)</label>
+        <input type ="file" id="import-file" accept=".json,application/json">
 
-    <article class="stat-card">
-<h3>Total Activities</h3>
-<p id="total-activities">0</p>
-    </article>
-    <article class ="stat-card">
-        <h3>Upcoming Activities</h3>
-        <p id="upcoming-activities">0</p>
-    </article>
-    <article class="stat-card">
-        <h3>Completed Activities</h3>
-        <p id="completed-activities">0</p>
-    </article>
-   </div>
+    </div>
+    <p id="data-status" role="status" aria-live="polite" ></p>
+    </div>
     </section>
     <section id="activities">
         <h2>My Activities</h2>
@@ -123,6 +140,15 @@
     </div>
     <button type="submit">Add Activity</button>
 </form>
+</section>
+<section id="about">
+    <h2>About Campus Life Planner</h2>
+    <p>
+        Campus Life Planner helps students organize academic tasks, manage deadlines, track activity durations, and plan campus events. 
+    </p>
+    <h3>Contact</h3>
+    <p> Github:<a href="https://github.com/Annualite1" target="_blank" rel="noopener noreferrer"> Visist my Giithub profile</a></p>
+    <p> Email: <a href="mailto:a.muhimpund@alustudent.com">a.muhimpund@alustudent.com</a></p>
 </section>
 </main>
 <footer>

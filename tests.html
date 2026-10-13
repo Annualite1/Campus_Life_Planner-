@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Campus Life Planner Tests</title>
+    </head>
+    <body>
+        <h1>Campus Life Planner Tests</h1>
+        <p id="summary">Running tests...</p>
+        <ul id="results"></ul>
+        <script type="module">
+            import {validateActivity } from "./scripts/validators.js";
+            const results = document.querySelector("#results");
+            const summary = document.querySelector("#summary");
+            let passed = 0;
+            let failed = 0;
+
+             function test(description, assertion) {
+                const item = document.createElement("li");
+                try{
+                    if(!assertion()) {
+                        throw new Error("Test failed");
+                    }
+                    item.textContent = "PASS: " + description;
+                    item.style.color = "green";
+                    passed++;
+                } catch (error) {
+                    item.textContent = "FAIL: " + description;
+                    item.style.color = "red";
+                    failed++;
+                    console.error(description, error);
+                }
+                results.appendChild(item);
+                }
+                const activity = {
+                    title: "Frontend Web Development",
+                    dueDate: "2026-10-16",
+                    duration: 60,
+                    tag: "study"
+                };
+
+            function isValid(changes = {}) {
+                return validateActivity({
+                    ...activity,
+                    ...changes
+                }).isValid;
+            }
+
+        test("Accepts a valid activity", () =>
+        isValid());
+        test("Rejects a short title", () =>
+        !isValid({ title: "AB"}));
+        test("Rejects zero duration", () =>
+        !isValid({ duration: 0}));
+        test("Rejects non-numeric duration", () =>
+        !isValid({ duration: "abc"}));
+        test("Rejects an incorrectly formatted date", () =>
+        !isValid({ dueDate: "16-10-2026"}));
+        test("Rejects an invalid calendar date", () =>
+        !isValid({ dueDate:"2026-02-30" }));
+        test("Rejects a tag starting with a number", () =>
+        !isValid({ tag:"1study" }));
+    const datePattern =/^\d{4}-\d{2}-\d{2}$/;
+    const tagPattern = /^[A-Za-z][A-Za-z -]{1,29}$/;
+    const htmlPattern = /<[^>]*>/;
+    const repeatedWordPattern = /\b(\w+)\s+\1\b/i;
+
+    test("Date regex accepts YYYY-MM-DD", () =>
+datePattern.test("2026-10-16"));
+   test("Date regex rejects the wrong format", () =>
+!datePattern.test("16/10/2026"));
+test("Tag regex accepts study group", () =>
+tagPattern.test("study group"));
+test("Tag regex rejects a numeric start", () =>
+!tagPattern.test("2study"));
+test("HTML regex detects HTML tags", () =>
+htmlPattern.test("<script>"));
+    test("Advanced regex detects repeated words", () =>
+    repeatedWordPattern.test("study study"));
+    summary.textContent =
+    `${passed} passed, ${failed} failed, ${passed + failed} total`;
+        
+        </script>
+    </body>
+</html>

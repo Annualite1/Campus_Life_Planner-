@@ -12,20 +12,20 @@ export function searchActivities(activities, query, ignoreCase =true) {
             error: "Invalid regular expression.Please check your search pattern."
         };
         }
-        const resukts = activities.filter(activity =>){
+        const results = activities.filter(activity => {
             const searchableText =[
                 activity.title,
                 activity.tag,
-                activity.duedate,
+                activity.dueDate,
                 activity.status || ""
             ].join(" ");
 
             pattern.lastIndex =0;
-            return pattern.test(searchText);
-        };
+            return pattern.test(searchableText);
+        });
         return {results, error: null };
       }
-      export function sortActivities(activities, sortBY ="dueDate-asc") {
+      export function sortActivities(activities, sortBy ="dueDate-asc") {
         const sorted =[...activities];
          
         switch(sortBy) {
@@ -57,4 +57,3 @@ export function searchActivities(activities, query, ignoreCase =true) {
                 return sorted;
         }
         }
-})
