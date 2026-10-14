@@ -1,5 +1,41 @@
 import { settings } from "./state.js";
-export function renderActivities(activities, container) {
+function appendHighlightedText(element, text, query, ignoreCase) {
+    if(!query.trim()) {
+        element.textContent = text;
+        return;
+    }
+    let pattern;
+    try{
+        pattern = new RegExp(query,ignoreCase ? "gi" : "g");
+    } catch (error) {
+        element.textContent = text;
+        return;
+    }
+    let lastIndex = 0;
+    let match;
+    while ((match = pattern.exec(text)) !== null) {
+        if(match[0].length === 0) {
+            pattern.lastIndex++;
+            continue;
+        }
+element.appendChild(
+    document.createTextNode(text.slice(lastIndex, match.index))
+);
+ const mark = document.createElement("mark");
+ mark.textContent = match[0];
+ element.appendChild(mark);
+  lastIndex = match.index + match[0].length;
+}
+ element.appendChild(
+    document.createTextNode(text.slice(lastIndex))
+ );
+}
+export function renderActivities(
+    activities, 
+    container,
+    query = "",
+    ignoreCase = true
+) {
     container.replaceChildren();
 
     if(activities.length === 0){
@@ -12,7 +48,12 @@ export function renderActivities(activities, container) {
         const card =document.createElement("article");
         card.className ="activity-card";
          const title =document.createElement("h3");
-         title.textContent=activity.title;
+         appendHighlightedText(
+            title,
+            activity.title,
+            query,
+            ignoreCase
+         );
          const dueDate=document.createElement("p");
          dueDate.textContent= `Due date: ${activity.dueDate}`;
          const duration =document.createElement("p");

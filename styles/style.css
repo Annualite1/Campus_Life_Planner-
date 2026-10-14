@@ -47,7 +47,7 @@ line-height:1.6;
    }
    .stat-card:hover {
     transform:translateY(-3px);
-    box-shadow:0 5px 12px rgba(0,0,0,0.1);
+    box-shadow:0 5px 12px rgba(0,0,0,0,0.1);
    }
    .stat-card h3{
     margin-top:0;
@@ -83,8 +83,97 @@ line-height:1.6;
     background-color:#243b6b;
     color:#ffffff;
     padding:10px 15px;
-    z-index:1000px;
+    z-index: 1000;
    }
    .skip-link:focus{
-    top:10px;
+    top:10px
    }
+   @media (min-width: 768px) {
+    main {
+        width: 88%;
+    }
+    header h1 {
+        font-size: 2.5rem;
+    }
+    .stas-container {
+        gap: 24px;
+    }
+   }
+   @media (max-width: 480px) {
+    main {
+        width: 94%;
+        margin: 16px auto;
+    }
+    #dashboard {
+        padding: 16px;
+    }
+    nav {
+        gap: 12px;
+    }
+    header h1 {
+        font-size: 1.7rem;
+    }
+    .stat-card {
+        flex-basis: 100%
+    }
+   }
+   #activities,
+   #add-activity,
+   #about {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+   }
+   .form-group {
+     display: flex;
+     flex-direction: column;
+     gap: 6px;
+     margin-bottom: 16px;
+   }
+   input,
+   select,
+   button {
+    font: inherit;
+    max-width: 100%;
+   }
+   input,
+   select {
+    padding: 10px;
+    border: 1px solid #aab4c5;
+    border-radius: 6px;
+   }
+   button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #243b6b;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+   }
+   button:hover {
+    background-color: #172849;
+   }
+   button:focus-visible,
+   a:focus-visisble,
+   input:focus-visisble,
+   select:focus-visible {
+    outline: 3px solid #e09f3e;
+    outline-offset: 3px;
+   }
+   .activity-card {
+    margin-top: 16px;
+    padding: 16px;
+    border: 1px solid #d8deea;
+    border-radius: 8px;
+    background-color: #ffffff;
+   }
+   .activity-card button {
+    margin: 4px 8px 4px 0;
+   }
+   .activity-controls {
+    display:flex;
+    flex-direction: column;
+   }
+   

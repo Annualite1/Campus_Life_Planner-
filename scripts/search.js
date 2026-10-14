@@ -31,11 +31,11 @@ export function searchActivities(activities, query, ignoreCase =true) {
         switch(sortBy) {
             case "dueDate-asc":
                 return sorted.sort((a, b) =>
-                    a.dueDate.localeCompare(b.duedate)
+                    a.dueDate.localeCompare(b.dueDate)
             );
              case "dueDate-desc":
                 return sorted.sort((a, b) =>
-                    a.dueDate.localeCompare(a.duedate)
+                    b.dueDate.localeCompare(a.dueDate)
             );
              case "title-asc":
                 return sorted.sort((a, b) =>

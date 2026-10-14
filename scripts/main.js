@@ -33,6 +33,8 @@ importFileInput?.addEventListener("change", event=> {
 
 
 const form = document.querySelector("#activity-form");
+const titleInput = document.querySelector("title");
+const titleError = document.querySelector("#title-error");
 const activitiesContainer = document.querySelector(".activities-list");
 const searchInput = document.querySelector("#search-input");
 const tagFilter = document.querySelector("#tag-filter");
@@ -228,7 +230,13 @@ const searchResult= searchActivities(
     `${searchResult.results.length} activity/activities found.`;
  }
  results =sortActivities(searchResult.results, sortBy?.value);
- renderActivities(results, activitiesContainer);
+ renderActivities(
+    results,
+    activitiesContainer,
+    searchInput?.value || "",
+    caseInsensitive?.checked ?? true
+
+    );
 
 }
 activitiesContainer?.addEventListener("click", event => {
@@ -304,6 +312,22 @@ form?.addEventListener("submit", event => {
     form.reset();
 });
 searchInput?.addEventListener("input", displayActivities);
+titleInput?.addEventListener("input", () => {
+    const title = titleInput.value.trim();
+    if(title.length <3) {
+        titleError.textContent = "Title must be at least 3 characters.";
+    } else if (title.length > 100) {
+        titleError.textContent = "Title must not exceed 100 characters.";
+    } else if (/(.)\1{2,}/.test(title)) {
+        titleError.textContent = "Avoid repeating the same character three or more times.";
+    } else if (/<[^>]*>/.test(title)) {
+        titleError.textContent = "HTML tags are not allowed in the title.";
+    } else {
+        titleError.textContent = "";
+    }
+
+});
+
 tagFilter?.addEventListener("change", displayActivities);
 sortBy?.addEventListener("change", displayActivities);
 caseInsensitive?.addEventListener("change", displayActivities);

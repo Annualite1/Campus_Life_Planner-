@@ -41,6 +41,9 @@ export function validateActivity(activity) {
       if(!tagPattern.test(tag)) {
         errors.tag ="Tag must start with a letter and contain 2-30 letters, spaces, or hyphens.";
       }
+      if (/(.)\1{2,}/.test(title)) {
+        errors.title = "Avoid repeating the same character three or more times.";
+      }
       if(/<[^>]*>/.test(title)){
         errors.title ="HTML tags are not allowed in the title.";
 
