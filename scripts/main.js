@@ -15,7 +15,7 @@ import{
  import { validateActivity } from"./validators.js";
  import  { searchActivities, sortActivities} from "./search.js";
  import { renderActivities, updateDashboard } from "./ui.js";
- const exportButton = document.querySelector("#export-buttton");
+ const exportButton = document.querySelector("#export-button");
  const dataStatus = document.querySelector("#data-status");
 
 exportButton?.addEventListener("click", exportActivities);
