@@ -6,19 +6,17 @@ import{
     updateActivity,
     deleteActivity
 }from "./state.js";
-
 import{
     loadActivities,
     saveActivities,
     loadSettings,
     saveSettings
-}from "./storage.js";
-
-import { validateActivity } from "./validators.js";
-import { searchActivities, sortActivities} from "./search.js";
-import { renderActivities,updateDashboard } from "./ui.js";
-const exportButton = document.querySelector("#export-button");
-const dataStatus = document.querySelector("#data-status");
+ }from"./storage.js";
+ import { validateActivity } from"./validators.js";
+ import  { searchActivities, sortActivities} from "./search.js";
+ import { renderActivities, updateDashboard } from "./ui.js";
+ const exportButton = document.querySelector("#export-buttton");
+ const dataStatus = document.querySelector("#data-status");
 
 exportButton?.addEventListener("click", exportActivities);
 const importFileInput = document.querySelector("#import-file");
@@ -33,7 +31,7 @@ importFileInput?.addEventListener("change", event=> {
 
 
 const form = document.querySelector("#activity-form");
-const titleInput = document.querySelector("title");
+const titleInput = document.querySelector("#title");
 const titleError = document.querySelector("#title-error");
 const activitiesContainer = document.querySelector(".activities-list");
 const searchInput = document.querySelector("#search-input");
@@ -91,22 +89,20 @@ function updateCapStatus() {
         
     
 
-function saveAndRender() {
+function saveAndRender(){
     saveActivities(activities);
     updateDashboard(activities);
     updateCapStatus();
     displayActivities();
 }
-function exportActivities() {
-    try {
-    const jsonData = JSON.stringify(activities, null, 2);
-    const file = new Blob([jsonData], {
-        type: "application/json"
-    });
-
-    const downloadUrl = URL.createObjectURL(file);
-    const link = document.createElement("a");
-
+function exportActivities(){
+    try{
+        const jsonData = JSON.stringify(activities, null, 2);
+        const file = new Blob ([jsonData], {
+            type:"application/json"
+        });
+        const downloadUrl= URL.createObjectURL(file);
+        const link = document.createElement("a");
      link.href = downloadUrl;
      link.download = "campus-life-activities.json";
      document.body.appendChild(link);
@@ -334,14 +330,15 @@ caseInsensitive?.addEventListener("change", displayActivities);
 activityCapInput?.addEventListener("change", () =>{
     const cap = Number(activityCapInput.value);
     if(!Number.isInteger(cap) || cap < 1 || cap > 100) {
-        activityCapInput.value = settings.activityCap;
-        updateCapStatus();
-        return;
+    activityCapInput.value = settings.activityCap;
+    updateCapStatus();
+    return;
     }
     settings.activityCap = cap;
     saveSettings(settings);
     updateCapStatus();
 });
+
 durationUnitSelect?.addEventListener("change", () => {
     settings.durationUnit = durationUnitSelect.value;
     saveSettings(settings);

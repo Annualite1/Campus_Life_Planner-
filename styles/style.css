@@ -3,17 +3,17 @@
 }
 body{
     margin:0;
-    font-family:Arial, sans-serif;
+    font-family:Aria,sans-serif;
     background-color:#f4f6fb;
     color:#243047;
     line-height:1.6;
 }
-header h1{
+heaader h1{
     margin:0 0 10px;
     font-size:2rem;
 }
 header p{
-    margin:0;
+    margin: 0;
 }
 main {
     width:90%;
@@ -156,19 +156,20 @@ button:hover {
     background-color: #172849;
 }
 button:focus-visible,
+a:focus-visible,
 input:focus-visible,
 select:focus-visible {
-    outline:3px solid #e09f3e;
-    outline-offset: 3px;
+    outline: 3px solid #e09f3e;
+    outline-offset:  3px;
 }
 .activity-card {
     margin-top: 16px;
-    padding: 16px;
+    padding:16px;
     border:1px solid #d8deea;
     border-radius: 8px;
-    background-color:#ffffff;
+    background-color: #ffffff;
 }
-.activity-card button{
+.activity-card button {
     margin:4px 8px 4px 0;
 }
 .activity-controls {

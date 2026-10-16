@@ -56,4 +56,4 @@ export function searchActivities(activities, query, ignoreCase =true) {
             default:
                 return sorted;
         }
-        }
+    }

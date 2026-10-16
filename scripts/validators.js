@@ -51,6 +51,6 @@ export function validateActivity(activity) {
       return{
         isValid: Object.keys(errors).length ===0,
         errors
-      };
-    }
+      }
+    };
 
