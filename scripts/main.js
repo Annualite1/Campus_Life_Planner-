@@ -348,4 +348,5 @@ durationUnitSelect?.addEventListener("change", () => {
 saveSettings(settings);
 updateDashboard(activities);
 updateCapStatus();
+console.log("Activities loaded at startup:,activities");
 displayActivities();
