@@ -16,7 +16,7 @@ export function saveActivities(activities) {
             if(!savedData) {
                 return null;
             }
-            const actvities = JSON.parse(savedData);
+            const activities = JSON.parse(savedData);
             if (!Array.isArray(activities)) {
                 return null;
             }
